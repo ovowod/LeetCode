@@ -1,17 +1,20 @@
 class Solution:
     def getHappyString(self, n: int, k: int) -> str:
-        happy_list = []
+        happy_set = set()
         
         def happy_str(s, pre_str):
             if len(s) == n:
-                happy_list.append(''.join(s.copy()))
+                happy_set.add(''.join(s.copy()))
                 return
             
             letters = ['a', 'b', 'c']
             for letter in letters:
                 if pre_str == letter:
                     continue
-                s.append(letter)
+                if not pre_str:
+                    s.append('a')
+                else:
+                    s.append(letter)
                 happy_str(s, letter)
                 s.pop()
             
@@ -19,7 +22,7 @@ class Solution:
         happy_str([], 'b')
         happy_str([], 'c')
 
-        happy_list = sorted(list(set(happy_list)))
+        happy_list = sorted(list(happy_set))
         
         print(happy_list)
         if len(happy_list) < k:
