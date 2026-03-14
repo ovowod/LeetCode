@@ -3,7 +3,9 @@ class Solution:
         happy_list = []
         
         def happy_str(s, pre_str):
-            if len(s) == n:
+            if len(happy_list) == k:
+                return
+            elif len(s) == n:
                 happy_list.append(''.join(s.copy()))
                 return
             
