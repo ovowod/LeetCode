@@ -2,13 +2,16 @@ from collections import defaultdict
 
 class Solution:
     def judgeCircle(self, moves: str) -> bool:
-        matching = {"L":"R", "D":"U"}
-        movement = defaultdict(int)
+        x = y = 0
         
         for move in moves:
-            if move in ["R", "U"]:
-                movement[move] += 1
+            if move == "R":
+                x += 1
+            elif move == "L":
+                x -= 1
+            elif move == "U":
+                y += 1
             else:
-                movement[matching[move]] -= 1
-
-        return False if movement['R'] or movement['U'] else True
+                y -= 1
+        
+        return x == 0 and y == 0
